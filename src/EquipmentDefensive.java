@@ -1,9 +1,9 @@
-public class EquipementDefensif {
+public class EquipmentDefensive {
     private int defenceLevel;
     private String name;
     private String type;
 
-    public EquipementDefensif(String type) {
+    public EquipmentDefensive(String type) {
         switch (type) {
             case "warrior":
                 this.name = "aegis";

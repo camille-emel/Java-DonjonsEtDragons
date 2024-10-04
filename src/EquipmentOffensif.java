@@ -1,9 +1,9 @@
-public class EquipementOffensif {
+public class EquipmentOffensif {
     private int attackLevel;
     private String name;
     private String type;
 
-    public EquipementOffensif(String type) {
+    public EquipmentOffensif(String type) {
         switch (type) {
             case "warrior":
                 this.name = "excalibur";
@@ -18,4 +18,7 @@ public class EquipementOffensif {
                 this.type = "natural";
         }
     }
+//    public String toString() {
+//
+//    }
 }

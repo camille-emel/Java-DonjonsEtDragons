@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Random;
 
 public class Game {
     private Menu menu;
@@ -19,18 +20,13 @@ public class Game {
         menu.validateChar(this.personnage);
     }
 
-//    public int dice(){
-//        Random randomNumbers = new Random();
-//        return randomNumbers.nextInt(6)+1;
-//    }
-//
-//    public void int playerPosition(){
-//        System.out.println("Your position is : " + this.personnage.getPosition());
-//        System.out.println(this.personnage.getPosition());
-//
-//    }
-//    public int updatePosition(int position){
-//        return position += dice();
-//    }
+    public int dice(){
+        Random randomNumbers = new Random();
+        return randomNumbers.nextInt(6)+1;
+    }
+
+    public int updatePosition(int position){
+        return position += dice();
+    }
 
 }

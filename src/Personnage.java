@@ -3,8 +3,8 @@ public class Personnage {
     private String type;
     private int life;
     private int power;
-    private EquipementOffensif equipementOffensif;
-    private EquipementDefensif equipementDefensif;
+    private EquipmentOffensif equipmentOffensif;
+    private EquipmentDefensive equipmentDefensive;
     private int position;
 
     public Personnage() {
@@ -49,5 +49,26 @@ public class Personnage {
     }
     public int getPower() {
         return power;
+    }
+    public EquipmentOffensif getEquipmentOffensif() {
+        return this.equipmentOffensif;
+    }
+    public void setEquipmentOffensif(EquipmentOffensif stuff) {
+        this.equipmentOffensif = stuff;
+    }
+    public EquipmentDefensive getEquipmentDefensive() {
+        return this.equipmentDefensive;
+    }
+    public void setEquipmentDefensive(EquipmentDefensive stuff) {
+        this.equipmentDefensive = stuff;
+    }
+    public String toString() {
+        String message = "name : " + this.name;
+        message += "\ntype : " + this.type;
+        message += "\nlife : " + this.life;
+        message += "\npower : " + this.power;
+        message += "\nequipementOffensif : " + this.equipmentOffensif;
+        message += "\nequipementDefensif : " + this.equipmentDefensive;
+        return message;
     }
 }

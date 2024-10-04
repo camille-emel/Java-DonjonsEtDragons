@@ -8,10 +8,10 @@ public class Menu {
     }
 
     public void displayMenu() {
-        String gamestart = play();
-        if (Objects.equals(gamestart, "y")) {
+        String gameStart = play();
+        if (Objects.equals(gameStart, "y")) {
             System.out.println("Welcome to the game!");
-        } else if (Objects.equals(gamestart, "n")) {
+        } else if (Objects.equals(gameStart, "n")) {
             System.exit(0);
         }
     }
@@ -35,10 +35,11 @@ public class Menu {
             personnage.setLife(6);
             personnage.setPower(15);
         }
-        System.out.println("Character Name : " + personnage.getName());
-        System.out.println("Character Class : " + personnage.getType());
-        System.out.println("Character life : " + personnage.getLife());
-        System.out.println("Character power : " + personnage.getPower());
+        EquipmentOffensif offensifStuff = new EquipmentOffensif(personnage.getType());
+        personnage.setEquipmentOffensif(offensifStuff);
+        EquipmentDefensive defensiveStuff = new EquipmentDefensive(personnage.getType());
+        personnage.setEquipmentDefensive(defensiveStuff);
+        System.out.println(personnage);
         return personnage;
     }
 
@@ -59,29 +60,23 @@ public class Menu {
 
     public String getPlayerName() {
         Scanner myObj = new Scanner(System.in);
-        System.out.print("Enter caracter name : ");
+        System.out.print("Enter character name : ");
         return myObj.nextLine();
     }
 
     public String getPlayerType() {
         Scanner myObj = new Scanner(System.in);
-        System.out.print("Enter caracter class 1 for Warrior or 2 for Mage : ");
-        String caracterClass = myObj.nextLine();
-        if (Objects.equals(caracterClass, "1")) {
+        System.out.print("Enter character class 1 for Warrior or 2 for Mage : ");
+        String characterClass = myObj.nextLine();
+        if (Objects.equals(characterClass, "1")) {
             return "warrior";
-        } else if (Objects.equals(caracterClass, "2")) {
+        } else if (Objects.equals(characterClass, "2")) {
             return "magician";
         }
         return getPlayerType();
     }
-
-//    public String getCaracterStuff(String type) {
-//        if (Objects.equals(type, "Warrior")) {
-//            return ?????;
-//        } else if (Objects.equals(type, "Mage")) {
-//            return ????:
-//        } else {
-//            return "error";
-//        }
-//    }
+    public void playerPosition(Personnage personnage){
+        System.out.println("Your position is : " + personnage.getPosition());
+        System.out.println(personnage.getPosition());
+    }
 }
