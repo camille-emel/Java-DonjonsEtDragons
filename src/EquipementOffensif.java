@@ -1,13 +1,21 @@
 public class EquipementOffensif {
-    String EquipementOffensif;
+    int attackLevel;
+    String name;
+    String type;
 
     public EquipementOffensif(String type) {
-        if (type.equals("Warrior")) {
-            this.EquipementOffensif = "Katana";
-        }else if (type.equals("Mage")) {
-            this.EquipementOffensif = "Baton";
-        }else{
-            this.EquipementOffensif = "Rien";
+        switch (type) {
+            case "warrior":
+                this.name = "sword";
+                this.type = "weapon";
+                break;
+            case "magician":
+                this.name = "fireball";
+                this.type = "spell";
+                break;
+            default:
+                this.name = "hand";
+                this.type = "natural";
         }
     }
 }

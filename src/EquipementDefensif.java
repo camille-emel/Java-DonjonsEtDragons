@@ -1,13 +1,21 @@
 public class EquipementDefensif {
-    String EquipementDefensif;
+    int defenceLevel;
+    String name;
+    String type;
 
     public EquipementDefensif(String type) {
-        if (type.equals("Warrior")) {
-            this.EquipementDefensif = "Shield";
-        }else if (type.equals("Mage")) {
-            this.EquipementDefensif = "Book";
-        }else{
-            this.EquipementDefensif = "Rien";
+        switch (type) {
+            case "warrior":
+                this.name = "aegis";
+                this.type = "shield";
+                break;
+            case "magician":
+                this.name = "tincture";
+                this.type = "philtre";
+                break;
+            default:
+                this.name = "hand";
+                this.type = "natural";
         }
     }
 }

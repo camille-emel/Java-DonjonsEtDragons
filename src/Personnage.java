@@ -1,16 +1,13 @@
-import java.util.Objects;
-import java.util.Scanner;
-
 public class Personnage {
     String name;
     String type;
     int life;
     int power;
-    String equipementOffensif;
-    String equipementDefensif;
+    EquipementOffensif equipementOffensif;
+    EquipementDefensif equipementDefensif;
 
     public Personnage() {
-        this("toto");
+        this("toto", "clown");
     }
 
     public Personnage(String name) {
