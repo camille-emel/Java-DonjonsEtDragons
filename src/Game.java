@@ -1,21 +1,36 @@
+import java.util.List;
+
 public class Game {
-    Menu menu;
-    Personnage personnage;
+    private Menu menu;
+    private Personnage personnage;
+    private List<Integer> board;
 
     public Game() {
         this.menu = new Menu();
-        playerCharacter();
+
+    }
+    public void gameStart() {
+        createCharacter();
     }
 
-    public void playerCharacter() {
-        String name = menu.getName();
-        String type = menu.getType();
-//        this.personnage.name = menu.getName();
-//        this.personnage.type = menu.getType();
-
-        this.personnage = new Personnage(name, type);
-        System.out.println("Character created : " + this.personnage.name + " is a "+this.personnage.type);
+    public void createCharacter() {
+        this.personnage = new Personnage();
+        this.personnage = menu.selectNameAndType(this.personnage);
+        menu.validateChar(this.personnage);
     }
 
+//    public int dice(){
+//        Random randomNumbers = new Random();
+//        return randomNumbers.nextInt(6)+1;
+//    }
+//
+//    public void int playerPosition(){
+//        System.out.println("Your position is : " + this.personnage.getPosition());
+//        System.out.println(this.personnage.getPosition());
+//
+//    }
+//    public int updatePosition(int position){
+//        return position += dice();
+//    }
 
 }

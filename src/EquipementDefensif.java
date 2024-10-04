@@ -1,7 +1,7 @@
 public class EquipementDefensif {
-    int defenceLevel;
-    String name;
-    String type;
+    private int defenceLevel;
+    private String name;
+    private String type;
 
     public EquipementDefensif(String type) {
         switch (type) {
@@ -10,7 +10,7 @@ public class EquipementDefensif {
                 this.type = "shield";
                 break;
             case "magician":
-                this.name = "tincture";
+                this.name = "grail";
                 this.type = "philtre";
                 break;
             default:

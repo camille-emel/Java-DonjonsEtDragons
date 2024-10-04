@@ -1,12 +1,12 @@
 public class EquipementOffensif {
-    int attackLevel;
-    String name;
-    String type;
+    private int attackLevel;
+    private String name;
+    private String type;
 
     public EquipementOffensif(String type) {
         switch (type) {
             case "warrior":
-                this.name = "sword";
+                this.name = "excalibur";
                 this.type = "weapon";
                 break;
             case "magician":
