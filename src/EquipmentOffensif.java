@@ -18,7 +18,8 @@ public class EquipmentOffensif {
                 this.type = "natural";
         }
     }
-//    public String toString() {
-//
-//    }
+    public String toString() {
+        String message = this.name;
+        return message;
+    }
 }

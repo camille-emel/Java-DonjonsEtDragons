@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class Game {
@@ -10,23 +11,34 @@ public class Game {
         this.menu = new Menu();
 
     }
-    public void gameStart() {
+
+    public void gameInit() {
         createCharacter();
+        personnage.setPosition(1);
+        gameStart();
     }
 
     public void createCharacter() {
         this.personnage = new Personnage();
         this.personnage = menu.selectNameAndType(this.personnage);
-        menu.validateChar(this.personnage);
+        menu.confirmeCharacter(this.personnage);
+    }
+    //pas utiliser le game board
+    public void gameStart() {
+        while (personnage.getPosition()<64) {
+            if (Objects.equals(menu.playerPosition(personnage), "continue")) {
+                int newPlayerPosition = personnage.getPosition()+ dice();
+//                if (personnage.getPosition()>64){
+//                    newPlayerPosition = 64;
+//                }
+                personnage.setPosition(newPlayerPosition);
+            }
+        }
+        menu.victory(personnage);
     }
 
     public int dice(){
         Random randomNumbers = new Random();
         return randomNumbers.nextInt(6)+1;
     }
-
-    public int updatePosition(int position){
-        return position += dice();
-    }
-
 }

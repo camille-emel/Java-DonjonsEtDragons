@@ -8,7 +8,7 @@ public class Personnage {
     private int position;
 
     public Personnage() {
-        this("toto", "clown");
+        this("toto");
     }
 
     public Personnage(String name) {
@@ -18,6 +18,7 @@ public class Personnage {
     public Personnage(String name, String type) {
         this.name = name;
         this.type = type;
+
     }
 
     public void setName(String name) {
