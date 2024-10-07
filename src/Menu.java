@@ -10,28 +10,29 @@ public class Menu {
     }
 
     //tentative de centralisation du y/n
-    public String askPlayerYesORNo(String question) {
+    public Boolean askPlayerYesORNo(String question) {
         Scanner myObj = new Scanner(System.in);
-        System.out.print(question + "    y/n ?");
+        System.out.print(question + " y/n ?");
         String response = myObj.nextLine();
         if (Objects.equals(response, "y")) {
-            return "y";
+            return true;
         } else if (Objects.equals(response, "n")) {
-            return "n";
+            return false;
         }
         return askPlayerYesORNo(question);
     }
 
     public void displayMenu() {
-        String gameStart = play();
-        if (Objects.equals(gameStart, "y")) {
+        if (play()) {
             System.out.println("Welcome to the game!");
-        } else if (Objects.equals(gameStart, "n")) {
-            System.exit(0);
+        } else if (!play()) {
+            gameEnd();
+        }else {
+            displayMenu();
         }
     }
 
-    public String play() {
+    public Boolean play() {
         return askPlayerYesORNo("Do you want to play ? ");
     }
 
@@ -56,12 +57,11 @@ public class Menu {
     }
 
     public void confirmeCharacter(Personnage personnage) {
-        Scanner myObj = new Scanner(System.in);
-        System.out.print("Confirme ? y/n :");
-        String choice = myObj.nextLine();
-        if (Objects.equals(choice, "y")) {
+
+        Boolean confirme = askPlayerYesORNo("Confirme ? ");
+        if (confirme) {
             System.out.println("Game starts!");//start board
-        } else if (Objects.equals(choice, "n")) {
+        } else if (!confirme) {
             selectNameAndType(personnage);
             confirmeCharacter(personnage);
         } else {
@@ -86,18 +86,18 @@ public class Menu {
         }
         return getPlayerType();
     }
+    public void gameEnd(){
+        System.out.println("Game ends!");
+        System.exit(0);
+    }
 
     public String playerPosition(Personnage personnage) {
-        Scanner myObj = new Scanner(System.in);
         System.out.println("Your position is : " + personnage.getPosition());
-        System.out.println("Continue to play, throw dice ? y/n");
-        String choice = myObj.nextLine();
-        if (Objects.equals(choice, "y")) {
+        Boolean continuePlay = askPlayerYesORNo("Continue to play, throw dice ? ");
+        if (continuePlay) {
             return "continue";
-        } else if (Objects.equals(choice, "n")) {
-            System.out.println("Game ends!");
-            System.exit(0);
-            //moche
+        } else if (!continuePlay) {
+            gameEnd();
             return "";
         } else {
             return playerPosition(personnage);
