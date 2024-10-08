@@ -46,7 +46,7 @@ public class Menu {
         if (confirme) {
             System.out.println("Game starts!");//start board
         } else if (!confirme) {
-            selectNameAndType(personnage);
+            selectNameAndType();
             confirmeCharacter(personnage);
         } else {
             confirmeCharacter(personnage);
@@ -70,9 +70,10 @@ public class Menu {
         }
     }
 
-    public Personnage selectNameAndType(Personnage personnage) {
+    public Personnage selectNameAndType() {
         String name = getPlayerName();
         String type = getPlayerType();
+        Personnage personnage;
         EquipmentOffensif offensifStuff;
         EquipmentDefensive defensiveStuff;
         if (Objects.equals(type, "warrior")) {
@@ -96,10 +97,14 @@ public class Menu {
         System.exit(0);
     }
 
+    //continue play -> boolean
+
+
+        //rename
     public String playerPosition(Personnage personnage) {
+        System.out.println("Your position is : " + personnage.getPosition());
         Boolean continuePlay = askPlayerYesORNo("Continue to play, throw dice ? ");
         if (continuePlay) {
-            System.out.println("Your position is : " + personnage.getPosition());
             return "continue";
         } else {
             gameEnd();
@@ -108,8 +113,9 @@ public class Menu {
     }
 
     //moche hardcoded
-//    public void victory(Personnage personnage) {
-//        System.out.println("Your position is : 64");
-//        System.out.println("GG YOU WIN " + personnage.getName());
-//    }
+    public void victory(Personnage personnage) {
+        System.out.println("GG YOU WIN " + personnage.getName());
+        //replay ?
+        //exit?
+    }
 }

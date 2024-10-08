@@ -3,6 +3,8 @@ public abstract class EquipmentDefensive {
     protected String name;
     protected String type;
 
+    //viré construct car abstract ?
+
     public EquipmentDefensive(String type) {
         switch (type) {
             case "warrior":
