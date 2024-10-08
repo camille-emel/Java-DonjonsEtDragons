@@ -9,7 +9,6 @@ public class Game {
 
     public Game() {
         this.menu = new Menu();
-
     }
 
     public void gameInit() {
@@ -19,7 +18,7 @@ public class Game {
     }
 
     public void createCharacter() {
-        this.personnage = new Personnage();
+        this.personnage = new Magician("toto");
         this.personnage = menu.selectNameAndType(this.personnage);
         menu.confirmeCharacter(this.personnage);
     }
@@ -28,9 +27,6 @@ public class Game {
         while (personnage.getPosition()<64) {
             if (Objects.equals(menu.playerPosition(personnage), "continue")) {
                 int newPlayerPosition = personnage.getPosition()+ dice();
-//                if (personnage.getPosition()>64){
-//                    newPlayerPosition = 64;
-//                }
                 personnage.setPosition(newPlayerPosition);
             }
         }

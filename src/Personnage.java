@@ -1,26 +1,22 @@
-public class Personnage {
-    private String name;
-    private String type;
-    private int life;
-    private int power;
-    private EquipmentOffensif equipmentOffensif;
-    private EquipmentDefensive equipmentDefensive;
-    private int position;
+public abstract class Personnage {
+    protected String name;
+    protected String type;
+    protected int life;
+    protected int power;
+    protected EquipmentOffensif equipmentOffensif;
+    protected EquipmentDefensive equipmentDefensive;
+    protected int position;
 
     public Personnage() {
         this("toto");
     }
-
     public Personnage(String name) {
         this(name,"clown");
     }
-
     public Personnage(String name, String type) {
         this.name = name;
         this.type = type;
-
     }
-
     public void setName(String name) {
         this.name = name;
     }

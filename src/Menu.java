@@ -4,31 +4,36 @@ import java.util.Scanner;
 public class Menu {
 
     public Menu() {
-//        do {
         displayMenu();
-//    }while (!keyechap(27));
     }
 
-    //tentative de centralisation du y/n
-    public Boolean askPlayerYesORNo(String question) {
+    public String askPlayerInput(String askInput) {
         Scanner myObj = new Scanner(System.in);
-        System.out.print(question + " y/n ?");
-        String response = myObj.nextLine();
-        if (Objects.equals(response, "y")) {
-            return true;
-        } else if (Objects.equals(response, "n")) {
-            return false;
+        System.out.print(askInput);
+        return myObj.nextLine();
+    }
+
+    //centralisation du y/n
+    public Boolean askPlayerYesORNo(String question) {
+        String playerResponse = askPlayerInput(question + " y/n?");
+        switch (playerResponse) {
+            case "y":
+                return true;
+            case "n":
+                return false;
+            default:
+                return askPlayerYesORNo(question);
         }
-        return askPlayerYesORNo(question);
     }
 
     public void displayMenu() {
-        if (play()) {
-            System.out.println("Welcome to the game!");
-        } else if (!play()) {
-            gameEnd();
-        }else {
-            displayMenu();
+        boolean playerResponse = play();
+        switch (playerResponse) {
+            case true:
+                System.out.println("Welcome!");
+                break;
+            case false:
+                gameEnd();
         }
     }
 
@@ -36,29 +41,8 @@ public class Menu {
         return askPlayerYesORNo("Do you want to play ? ");
     }
 
-    public Personnage selectNameAndType(Personnage personnage) {
-        String name = getPlayerName();
-        String type = getPlayerType();
-        personnage.setName(name);
-        personnage.setType(type);
-        if (Objects.equals(personnage.getType(), "warrior")) {
-            personnage.setLife(10);
-            personnage.setPower(10);
-        } else if (Objects.equals(personnage.getType(), "magician")) {
-            personnage.setLife(6);
-            personnage.setPower(15);
-        }
-        EquipmentOffensif offensifStuff = new EquipmentOffensif(personnage.getType());
-        personnage.setEquipmentOffensif(offensifStuff);
-        EquipmentDefensive defensiveStuff = new EquipmentDefensive(personnage.getType());
-        personnage.setEquipmentDefensive(defensiveStuff);
-        System.out.println(personnage);
-        return personnage;
-    }
-
     public void confirmeCharacter(Personnage personnage) {
-
-        Boolean confirme = askPlayerYesORNo("Confirme ? ");
+        boolean confirme = askPlayerYesORNo("Confirme ? ");
         if (confirme) {
             System.out.println("Game starts!");//start board
         } else if (!confirme) {
@@ -70,23 +54,46 @@ public class Menu {
     }
 
     public String getPlayerName() {
-        Scanner myObj = new Scanner(System.in);
-        System.out.print("Enter character name : ");
-        return myObj.nextLine();
+        return askPlayerInput("Enter character name : ");
     }
 
     public String getPlayerType() {
-        Scanner myObj = new Scanner(System.in);
-        System.out.print("Enter character class : 1 for warrior or 2 for magician : ");
-        String characterClass = myObj.nextLine();
-        if (Objects.equals(characterClass, "1")) {
-            return "warrior";
-        } else if (Objects.equals(characterClass, "2")) {
-            return "magician";
+        String characterClass = askPlayerInput("Enter character class : " +
+                "1 for warrior or 2 for magician : ");
+        switch (characterClass) {
+            case "1":
+                return "warrior";
+            case "2":
+                return "magician";
+            default:
+                return getPlayerType();
         }
-        return getPlayerType();
     }
-    public void gameEnd(){
+
+
+    public Personnage selectNameAndType(Personnage personnage) {
+        String name = getPlayerName();
+        String type = getPlayerType();
+        EquipmentOffensif offensifStuff;
+        EquipmentDefensive defensiveStuff;
+        if (Objects.equals(type, "warrior")) {
+            personnage = new Warrior(name);
+            offensifStuff = new Weapon();
+            defensiveStuff = new Shield();
+        } else {
+            personnage = new Magician(name);
+            offensifStuff = new Spell();
+            defensiveStuff = new Philtre();
+        }
+        personnage.setEquipmentOffensif(offensifStuff);
+        personnage.setEquipmentDefensive(defensiveStuff);
+
+        System.out.println(personnage);
+        return personnage;
+    }
+
+
+    public void gameEnd() {
         System.out.println("Game ends!");
         System.exit(0);
     }
@@ -98,11 +105,12 @@ public class Menu {
             return "continue";
         } else if (!continuePlay) {
             gameEnd();
-            return "";
+            return ""; //moche
         } else {
             return playerPosition(personnage);
         }
     }
+
     //moche hardcoded
     public void victory(Personnage personnage) {
         System.out.println("Your position is : 64");

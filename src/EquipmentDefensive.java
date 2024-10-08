@@ -1,7 +1,7 @@
-public class EquipmentDefensive {
-    private int defenceLevel;
-    private String name;
-    private String type;
+public abstract class EquipmentDefensive {
+    protected int defenceLevel;
+    protected String name;
+    protected String type;
 
     public EquipmentDefensive(String type) {
         switch (type) {

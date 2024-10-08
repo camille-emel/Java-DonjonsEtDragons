@@ -1,7 +1,7 @@
-public class EquipmentOffensif {
-    private int attackLevel;
-    private String name;
-    private String type;
+public abstract class EquipmentOffensif {
+    protected int attackLevel;
+    protected String name;
+    protected String type;
 
     public EquipmentOffensif(String type) {
         switch (type) {
@@ -18,6 +18,7 @@ public class EquipmentOffensif {
                 this.type = "natural";
         }
     }
+
     public String toString() {
         String message = this.name;
         return message;
