@@ -15,7 +15,7 @@ public class Menu {
 
     //centralisation du y/n
     public Boolean askPlayerYesORNo(String question) {
-        String playerResponse = askPlayerInput(question + " y/n?");
+        String playerResponse = askPlayerInput(question + "y/n?");
         switch (playerResponse) {
             case "y":
                 return true;
@@ -70,7 +70,6 @@ public class Menu {
         }
     }
 
-
     public Personnage selectNameAndType(Personnage personnage) {
         String name = getPlayerName();
         String type = getPlayerType();
@@ -87,7 +86,6 @@ public class Menu {
         }
         personnage.setEquipmentOffensif(offensifStuff);
         personnage.setEquipmentDefensive(defensiveStuff);
-
         System.out.println(personnage);
         return personnage;
     }
@@ -99,21 +97,19 @@ public class Menu {
     }
 
     public String playerPosition(Personnage personnage) {
-        System.out.println("Your position is : " + personnage.getPosition());
         Boolean continuePlay = askPlayerYesORNo("Continue to play, throw dice ? ");
         if (continuePlay) {
+            System.out.println("Your position is : " + personnage.getPosition());
             return "continue";
-        } else if (!continuePlay) {
+        } else {
             gameEnd();
             return ""; //moche
-        } else {
-            return playerPosition(personnage);
         }
     }
 
     //moche hardcoded
-    public void victory(Personnage personnage) {
-        System.out.println("Your position is : 64");
-        System.out.println("GG YOU WIN " + personnage.getName());
-    }
+//    public void victory(Personnage personnage) {
+//        System.out.println("Your position is : 64");
+//        System.out.println("GG YOU WIN " + personnage.getName());
+//    }
 }

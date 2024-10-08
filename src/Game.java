@@ -22,19 +22,32 @@ public class Game {
         this.personnage = menu.selectNameAndType(this.personnage);
         menu.confirmeCharacter(this.personnage);
     }
+
     //pas utiliser le game board
+
+    //faire en sorte de savoir la case de départ // le result du dès // puis montré la case d'arriver.
     public void gameStart() {
-        while (personnage.getPosition()<64) {
+        while (personnage.getPosition() < 64) {
             if (Objects.equals(menu.playerPosition(personnage), "continue")) {
-                int newPlayerPosition = personnage.getPosition()+ dice();
+                int newPlayerPosition = personnage.getPosition() + dice();
                 personnage.setPosition(newPlayerPosition);
+                try {
+                    if (newPlayerPosition > 64) {
+                        throw new CharOutOfBound("GG YOU WIN");
+                    }
+                } catch (CharOutOfBound e) {
+                    System.out.println(e.getMessage());
+                }
             }
+//            menu.victory(personnage);
         }
-        menu.victory(personnage);
     }
 
-    public int dice(){
+
+
+
+    public int dice() {
         Random randomNumbers = new Random();
-        return randomNumbers.nextInt(6)+1;
+        return randomNumbers.nextInt(6) + 1;
     }
 }
