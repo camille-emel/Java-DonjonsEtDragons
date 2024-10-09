@@ -4,6 +4,7 @@ public abstract class Personnage {
     protected int life;
     protected int power;
     protected EquipmentOffensif equipmentOffensif;
+
     protected EquipmentDefensive equipmentDefensive;
     protected int position;
 

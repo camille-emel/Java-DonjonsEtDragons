@@ -1,5 +1,9 @@
 public class Weapon extends EquipmentOffensif{
+
     public Weapon(){
-        super("warrior");
+        super("hand");
+    }
+    public Weapon(String name){
+        super(name);
     }
 }

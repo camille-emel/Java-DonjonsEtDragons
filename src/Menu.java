@@ -76,14 +76,16 @@ public class Menu {
         Personnage personnage;
         EquipmentOffensif offensifStuff;
         EquipmentDefensive defensiveStuff;
+        //problème double nom sur weapon
         if (Objects.equals(type, "warrior")) {
-            personnage = new Warrior(name);
             offensifStuff = new Weapon();
             defensiveStuff = new Shield();
+            personnage = new Warrior(name, offensifStuff, defensiveStuff);
         } else {
-            personnage = new Magician(name);
             offensifStuff = new Spell();
             defensiveStuff = new Philtre();
+            personnage = new Magician(name, offensifStuff, defensiveStuff);
+
         }
         personnage.setEquipmentOffensif(offensifStuff);
         personnage.setEquipmentDefensive(defensiveStuff);
@@ -99,10 +101,19 @@ public class Menu {
 
     //continue play -> boolean
 
+    public void playerCurrentPosition(Personnage personnage) {
+        System.out.println("Your current position on board : " + personnage.getPosition());
+    }
 
-        //rename
-    public String playerPosition(Personnage personnage) {
-        System.out.println("Your position is : " + personnage.getPosition());
+    public void playNewPosition(Personnage personnage) {
+        System.out.println("Your new position : " + personnage.getPosition());
+    }
+
+    public void diceResult(int dice) {
+        System.out.println("The dice rolled a : " + dice);
+    }
+
+    public String continueToPlay() {
         Boolean continuePlay = askPlayerYesORNo("Continue to play, throw dice ? ");
         if (continuePlay) {
             return "continue";
@@ -118,4 +129,10 @@ public class Menu {
         //replay ?
         //exit?
     }
+
+//    public void turnCounter(int turnCounter) {
+//        System.out.println("---------------------------");
+//        System.out.println("Start of turn : " + turnCounter);
+//
+//    }
 }

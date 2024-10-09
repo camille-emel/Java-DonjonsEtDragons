@@ -1,5 +1,8 @@
 public class Spell extends EquipmentOffensif{
     public Spell() {
-        super("magician");
+        super("Fireball");
+    }
+    public Spell(String name){
+        super(name);
     }
 }

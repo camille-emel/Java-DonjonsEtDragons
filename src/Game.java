@@ -1,19 +1,21 @@
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
 public class Game {
     private Menu menu;
     private Personnage personnage;
-    private List<Integer> board;
+    private Board board;
+
 
     public Game() {
         this.menu = new Menu();
+        this.board= new Board(4);
     }
 
     public void gameInit() {
         createCharacter();
-        gameStart();
+        game();
         //comfirme replay
         /*if replay return inti*/
     }
@@ -24,17 +26,32 @@ public class Game {
         personnage.setPosition(1);
     }
 
-    //pas utiliser le game board
-    //faire en sorte de savoir la case de départ
-    // le result du dès
-    // puis montré la case d'arriver.
-    public void gameStart() {
+    public void game() {
+        ArrayList<Case> boardd= board.getBoard();
         while (personnage.getPosition() < 64) {
-            //faire variable
+            //Fin du jeu si le personnage meurt
+            if (personnage.getLife() <1) {
+                menu.gameEnd();
+            }
+            //Compte les tours
+//            int turnPlayed = 0;
+//            turnCounter(turnPlayed);
+//            turnPlayed++;
+            //Affiche la position du joueur.
+            menu.playerCurrentPosition(personnage);
 
-            if (Objects.equals(menu.playerPosition(personnage), "continue")) {
-                int newPlayerPosition = personnage.getPosition() + dice();
+            //Propose au joueur de quitter la partie a chaque tour.
+            String playerChooseToContinu = menu.continueToPlay();
+            if (Objects.equals(playerChooseToContinu, "continue")) {
+                //S'il continue de jouer, il lance un dès et sa position est update.
+                int newPlayerPosition = updatePlayerPosition(personnage);
+                //Fait par Gaby
+                Case actuel = boardd.get(newPlayerPosition);
+                actuel.event(personnage);
+                //
                 personnage.setPosition(newPlayerPosition);
+                menu.playNewPosition(personnage);
+                //try/catch fait sur demande du kit de développement... Je n'engage aucune responsabilité dans cette "chose".
                 try {
                     if (newPlayerPosition > 64) {
                         throw new CharOutOfBound("Your position is : 64");
@@ -44,12 +61,24 @@ public class Game {
                 }
             }
         }
+        //Message de victoire
         menu.victory(personnage);
     }
 
+//    public void turnCounter(int counter) {
+//        menu.turnCounter(counter);
+//    }
+
+    public int updatePlayerPosition(Personnage personnage) {
+        menu.playerCurrentPosition(personnage);
+        return personnage.getPosition()+dice();
+    }
+    //Lance un dès et affiche le result
     public int dice() {
         Random randomNumbers = new Random();
-        return randomNumbers.nextInt(6) + 1;
+//        int diceRoll = randomNumbers.nextInt(6) + 1;
+        int diceRoll = 1;
+        menu.diceResult(diceRoll);
+        return diceRoll;
     }
-    //updatepos //pos+dice
 }
