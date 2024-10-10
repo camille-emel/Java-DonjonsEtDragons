@@ -1,6 +1,10 @@
+import board.Board;
+import characters.Personnage;
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
+import board.Case;
 
 public class Game {
     private Menu menu;
@@ -10,7 +14,7 @@ public class Game {
 
     public Game() {
         this.menu = new Menu();
-        this.board= new Board(4);
+        this.board= new Board(10);
     }
 
     public void gameInit() {
@@ -26,50 +30,63 @@ public class Game {
         personnage.setPosition(1);
     }
 
-    public void game() {
-        ArrayList<Case> boardd= board.getBoard();
-        while (personnage.getPosition() < 64) {
-            //Fin du jeu si le personnage meurt
-            if (personnage.getLife() <1) {
-                menu.gameEnd();
-            }
-            //Compte les tours
-//            int turnPlayed = 0;
-//            turnCounter(turnPlayed);
-//            turnPlayed++;
-            //Affiche la position du joueur.
-            menu.playerCurrentPosition(personnage);
+    //Fin du jeu si le personnage meurt
+    public void isPlayerDead(){
+        if (personnage.getLife() <1) {
+            menu.gameEnd();
+        }
+    }
 
+    //Découpé cette monstruosité
+    public void game() {
+        ArrayList<Case> gameBoard= board.getBoard();
+        //.size car Arraylist alor que .length est pour les arrays
+        while (personnage.getPosition() < gameBoard.size()) {
+            isPlayerDead();
+            menu.playerCurrentPosition(personnage);
             //Propose au joueur de quitter la partie a chaque tour.
             String playerChooseToContinu = menu.continueToPlay();
             if (Objects.equals(playerChooseToContinu, "continue")) {
                 //S'il continue de jouer, il lance un dès et sa position est update.
-                int newPlayerPosition = updatePlayerPosition(personnage);
+                int newPlayerPosition = getNewPlayerPosition(personnage);
+                //NAZE comment faire ?
+                if (newPlayerPosition >= gameBoard.size()) {
+                    menu.victory(personnage);
+                    break;
+                }
+                else {
                 //Fait par Gaby
-                Case actuel = boardd.get(newPlayerPosition);
+                Case actuel = gameBoard.get(newPlayerPosition);
                 actuel.event(personnage);
                 //
                 personnage.setPosition(newPlayerPosition);
                 menu.playNewPosition(personnage);
+
                 //try/catch fait sur demande du kit de développement... Je n'engage aucune responsabilité dans cette "chose".
                 try {
-                    if (newPlayerPosition > 64) {
+                    if (newPlayerPosition > gameBoard.size()) {
                         throw new CharOutOfBound("Your position is : 64");
                     }
                 } catch (CharOutOfBound e) {
                     System.out.println(e.getMessage());
-                }
+                }}
             }
         }
         //Message de victoire
-        menu.victory(personnage);
+        if (menu.victory(personnage)) gameInit();
     }
 
+
+    //Compte les tours
+//            int turnPlayed = 0;
+//            menu.turnCounter(turnPlayed);
+//            turnPlayed++;
+    //Affiche la position du joueur.
 //    public void turnCounter(int counter) {
 //        menu.turnCounter(counter);
 //    }
 
-    public int updatePlayerPosition(Personnage personnage) {
+    public int getNewPlayerPosition(Personnage personnage) {
         menu.playerCurrentPosition(personnage);
         return personnage.getPosition()+dice();
     }

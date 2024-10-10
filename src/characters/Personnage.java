@@ -1,10 +1,14 @@
+package characters;
+
+import items.EquipmentDefensive;
+import items.EquipmentOffensif;
+
 public abstract class Personnage {
     protected String name;
     protected String type;
     protected int life;
     protected int power;
     protected EquipmentOffensif equipmentOffensif;
-
     protected EquipmentDefensive equipmentDefensive;
     protected int position;
 

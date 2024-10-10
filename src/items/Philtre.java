@@ -1,3 +1,5 @@
+package items;
+
 public class Philtre extends EquipmentDefensive {
     public Philtre() {
         super("empty");

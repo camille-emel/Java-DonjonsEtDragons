@@ -1,3 +1,7 @@
+package board;
+
+import characters.Personnage;
+
 public class CaseEmpty implements Case {
     @Override
     public void event(Personnage personnage) {

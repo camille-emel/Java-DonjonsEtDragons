@@ -1,3 +1,8 @@
+package characters;
+
+import items.EquipmentDefensive;
+import items.EquipmentOffensif;
+
 public class Warrior extends Personnage {
 
     public Warrior(String name, EquipmentOffensif weapon, EquipmentDefensive shield) {

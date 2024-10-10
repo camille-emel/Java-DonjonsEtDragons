@@ -1,3 +1,5 @@
+package items;
+
 public abstract class EquipmentDefensive {
     protected int defenceLevel;
     protected String name;

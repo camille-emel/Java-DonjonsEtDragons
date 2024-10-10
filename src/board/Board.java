@@ -1,4 +1,10 @@
+package board;
+
+import characters.EnemyDrake;
+import characters.EnemyGoblin;
+import characters.EnemySorcerer;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Board {
     private String enemy;
@@ -11,14 +17,38 @@ public class Board {
 
     public Board(int boardSize) {
         this.board = new ArrayList<>();
-        this.boardsize=boardSize;
+        this.boardsize = boardSize;
         simpleBoard();
     }
 
     public void simpleBoard(){
-        for(int i=0;i<boardsize;i++) {
-            //faire case random
-            board.add(i, new CaseBox());
+        numOfEnemyDrake(1);
+        numOfEnemySorcerer(1);
+        numOfEnemyGoblin(1);
+        numOfCaseBox(4);
+        for(int i=board.size();i<boardsize;i++) {
+            board.add(i, new CaseEmpty());
+        }
+        Collections.shuffle(board);
+    }
+    public void numOfEnemyDrake(int num){
+        for (int i=0;i<num;i++) {
+            board.add(new EnemyDrake());
+        }
+    }
+    public void numOfEnemySorcerer(int num){
+        for (int i=0;i<num;i++) {
+            board.add(new EnemySorcerer());
+        }
+    }
+    public void numOfEnemyGoblin(int num){
+        for (int i=0;i<num;i++) {
+            board.add(new EnemyGoblin());
+        }
+    }
+    public void numOfCaseBox(int num){
+        for (int i=0;i<num;i++) {
+            board.add(new CaseBox());
         }
     }
 

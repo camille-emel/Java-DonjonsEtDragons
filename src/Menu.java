@@ -1,14 +1,19 @@
+import characters.Magician;
+import characters.Personnage;
+import characters.Warrior;
+import items.*;
+
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Menu {
 
+    private final Scanner myObj = new Scanner(System.in);
     public Menu() {
         displayMenu();
     }
 
     public String askPlayerInput(String askInput) {
-        Scanner myObj = new Scanner(System.in);
         System.out.print(askInput);
         return myObj.nextLine();
     }
@@ -124,11 +129,16 @@ public class Menu {
     }
 
     //moche hardcoded
-    public void victory(Personnage personnage) {
+    public boolean victory(Personnage personnage) {
         System.out.println("GG YOU WIN " + personnage.getName());
+        return playAgain();
         //replay ?
         //exit?
     }
+    public boolean playAgain() {
+        return askPlayerYesORNo("Do you want to play again ? ");
+    }
+
 
 //    public void turnCounter(int turnCounter) {
 //        System.out.println("---------------------------");

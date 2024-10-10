@@ -1,4 +1,7 @@
-import java.lang.Math;
+package board;
+
+import characters.*;
+
 import java.util.Random;
 
 public class CaseEnemy implements Case {
@@ -15,7 +18,7 @@ public class CaseEnemy implements Case {
     }
     public void sorcere(Personnage personnage) {
         System.out.println("It's a sorcere ...!");
-        Personnage sorcere = new EnemySorcere();
+        Personnage sorcere = new EnemySorcerer();
     }
     public void drake(Personnage personnage) {
         System.out.println("It's a drake ...!");

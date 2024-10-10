@@ -1,4 +1,6 @@
-public class Shield extends EquipmentDefensive{
+package items;
+
+public class Shield extends EquipmentDefensive {
     public Shield() {
         super("hand");
     }

@@ -1,3 +1,8 @@
+package characters;
+
+import items.EquipmentDefensive;
+import items.EquipmentOffensif;
+
 public class Magician extends Personnage{
 
     public Magician(String name, EquipmentOffensif spell, EquipmentDefensive philtre){

@@ -1,5 +1,7 @@
+package items;
+
 public abstract class EquipmentOffensif {
-    protected int attackLevel;
+    protected int attackPower;
     protected String name;
 
     public EquipmentOffensif(String name) {
