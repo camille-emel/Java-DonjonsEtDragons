@@ -1,8 +1,8 @@
-package items;
+package items.defensive;
 
 public class SmallPotion extends Potion {
     public SmallPotion() {
         super("small potion");
-        this.regen = 1;
+        this.regen = 2;
     }
 }

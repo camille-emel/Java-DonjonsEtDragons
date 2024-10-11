@@ -1,7 +1,7 @@
 package characters;
 
-import items.EquipmentDefensive;
-import items.EquipmentOffensif;
+import items.defensive.EquipmentDefensive;
+import items.offensive.EquipmentOffensif;
 
 public abstract class Personnage {
     protected String name;
@@ -22,6 +22,14 @@ public abstract class Personnage {
         this.name = name;
         this.type = type;
     }
+    public int heroAttack(int heroPower, int monsterLife){
+        return monsterLife - heroPower;
+    }
+    public int monsterAttack(int monsterPower, int heroLife){
+        return heroLife - monsterPower;
+    }
+
+
     public void setName(String name) {
         this.name = name;
     }

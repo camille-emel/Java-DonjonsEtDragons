@@ -1,4 +1,4 @@
-package items;
+package items.defensive;
 
 public abstract class EquipmentDefensive {
     protected int defenceLevel;

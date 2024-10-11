@@ -13,21 +13,21 @@ public class Board {
     private int goblinPosition;
     private int dragonPosition;
     private ArrayList<Case> board ;
-    private int boardsize;
+    private int boardSize;
 
     public Board(int boardSize) {
         this.board = new ArrayList<>();
-        this.boardsize = boardSize;
-        simpleBoard();
+        this.boardSize = boardSize;
+        buildBoard();
     }
 
-    public void simpleBoard(){
+    public void buildBoard(){
         numOfEnemyDrake(1);
         numOfEnemySorcerer(1);
         numOfEnemyGoblin(1);
         numOfCaseBox(4);
-        for(int i=board.size();i<boardsize;i++) {
-            board.add(i, new CaseEmpty());
+        for(int i = board.size(); i< boardSize; i++) {
+            board.add(new CaseEmpty());
         }
         Collections.shuffle(board);
     }
@@ -68,15 +68,13 @@ public class Board {
         this.board = board;
     }
 
-    public int getBoardsize() {
-        return boardsize;
+    public int getBoardSize() {
+        return boardSize;
     }
 
-    public void setBoardsize(int boardsize) {
-        this.boardsize = boardsize;
+    public void setBoardSize(int boardSize) {
+        this.boardSize = boardSize;
     }
-
-
 
     public String getEnemy() {
         return enemy;

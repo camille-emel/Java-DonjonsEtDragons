@@ -1,6 +1,8 @@
-package items;
+package items.offensive;
 
-public abstract class EquipmentOffensif {
+import board.Case;
+
+public abstract class EquipmentOffensif implements Case {
     protected int attackPower;
     protected String name;
 

@@ -1,4 +1,4 @@
-package items;
+package items.defensive;
 
 public class Shield extends EquipmentDefensive {
     public Shield() {

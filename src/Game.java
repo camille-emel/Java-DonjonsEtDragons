@@ -40,15 +40,20 @@ public class Game {
     //Découpé cette monstruosité
     public void game() {
         ArrayList<Case> gameBoard= board.getBoard();
+
         //.size car Arraylist alor que .length est pour les arrays
         while (personnage.getPosition() < gameBoard.size()) {
             isPlayerDead();
             menu.playerCurrentPosition(personnage);
+
             //Propose au joueur de quitter la partie a chaque tour.
             String playerChooseToContinu = menu.continueToPlay();
+
             if (Objects.equals(playerChooseToContinu, "continue")) {
+
                 //S'il continue de jouer, il lance un dès et sa position est update.
                 int newPlayerPosition = getNewPlayerPosition(personnage);
+
                 //NAZE comment faire ?
                 if (newPlayerPosition >= gameBoard.size()) {
                     menu.victory(personnage);
@@ -57,7 +62,9 @@ public class Game {
                 else {
                 //Fait par Gaby
                 Case actuel = gameBoard.get(newPlayerPosition);
-                actuel.event(personnage);
+                actuel.event();
+                actuel.interaction(personnage);
+
                 //
                 personnage.setPosition(newPlayerPosition);
                 menu.playNewPosition(personnage);

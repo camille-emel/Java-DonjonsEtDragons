@@ -1,4 +1,4 @@
-package items;
+package items.defensive;
 
 public abstract class Potion {
     protected String name;

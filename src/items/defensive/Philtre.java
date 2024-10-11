@@ -1,4 +1,4 @@
-package items;
+package items.defensive;
 
 public class Philtre extends EquipmentDefensive {
     public Philtre() {

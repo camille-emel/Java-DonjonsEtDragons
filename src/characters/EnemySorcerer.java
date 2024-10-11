@@ -1,7 +1,7 @@
 package characters;
 import board.Case;
 
-public class EnemySorcerer extends Personnage implements Case {
+public class EnemySorcerer extends Enemy {
     public EnemySorcerer(){
         super("Xoxo");
         this.life=9;
@@ -9,7 +9,12 @@ public class EnemySorcerer extends Personnage implements Case {
     }
 
     @Override
-    public void event(Personnage personnage) {
-        System.out.println("A wild sorcere is in da room ");
+    public void event() {
+        System.out.println("A wild sorcerer is in this room ");
+        System.out.println("I m " + name + "and i will destroy you !");
+        super.event();
     }
+
+
+
 }

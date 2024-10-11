@@ -4,6 +4,7 @@ import characters.Personnage;
 
 public interface Case {
 
-    void event(Personnage personnage);
+    void event();
+    void interaction(Personnage personnage);
 
 }

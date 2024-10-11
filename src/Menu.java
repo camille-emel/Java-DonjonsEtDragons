@@ -1,7 +1,12 @@
 import characters.Magician;
 import characters.Personnage;
 import characters.Warrior;
-import items.*;
+import items.defensive.EquipmentDefensive;
+import items.defensive.Philtre;
+import items.defensive.Shield;
+import items.offensive.EquipmentOffensif;
+import items.offensive.Spell;
+import items.offensive.Weapon;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -81,7 +86,6 @@ public class Menu {
         Personnage personnage;
         EquipmentOffensif offensifStuff;
         EquipmentDefensive defensiveStuff;
-        //problème double nom sur weapon
         if (Objects.equals(type, "warrior")) {
             offensifStuff = new Weapon();
             defensiveStuff = new Shield();
@@ -104,8 +108,6 @@ public class Menu {
         System.exit(0);
     }
 
-    //continue play -> boolean
-
     public void playerCurrentPosition(Personnage personnage) {
         System.out.println("Your current position on board : " + personnage.getPosition());
     }
@@ -119,6 +121,7 @@ public class Menu {
     }
 
     public String continueToPlay() {
+        System.out.println("----------------------");
         Boolean continuePlay = askPlayerYesORNo("Continue to play, throw dice ? ");
         if (continuePlay) {
             return "continue";
@@ -128,12 +131,9 @@ public class Menu {
         }
     }
 
-    //moche hardcoded
     public boolean victory(Personnage personnage) {
         System.out.println("GG YOU WIN " + personnage.getName());
         return playAgain();
-        //replay ?
-        //exit?
     }
     public boolean playAgain() {
         return askPlayerYesORNo("Do you want to play again ? ");

@@ -1,7 +1,7 @@
 package characters;
 import board.Case;
 
-public class EnemyGoblin extends Personnage implements Case {
+public class EnemyGoblin extends Enemy {
     public EnemyGoblin() {
         super("Goblin");
         this.life = 6;
@@ -9,7 +9,11 @@ public class EnemyGoblin extends Personnage implements Case {
     }
 
     @Override
-    public void event(Personnage personnage) {
+    public void event() {
         System.out.println("A Goblin is here!");
+        super.event();
+
     }
+
+
 }

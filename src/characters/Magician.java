@@ -1,9 +1,9 @@
 package characters;
 
-import items.EquipmentDefensive;
-import items.EquipmentOffensif;
+import items.defensive.EquipmentDefensive;
+import items.offensive.EquipmentOffensif;
 
-public class Magician extends Personnage{
+public class Magician extends Personnage {
 
     public Magician(String name, EquipmentOffensif spell, EquipmentDefensive philtre){
         super(name,"magician");
@@ -12,4 +12,5 @@ public class Magician extends Personnage{
         this.equipmentDefensive = philtre;
         this.equipmentOffensif  = spell;
     }
+
 }

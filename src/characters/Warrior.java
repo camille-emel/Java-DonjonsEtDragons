@@ -1,7 +1,7 @@
 package characters;
 
-import items.EquipmentDefensive;
-import items.EquipmentOffensif;
+import items.defensive.EquipmentDefensive;
+import items.offensive.EquipmentOffensif;
 
 public class Warrior extends Personnage {
 
