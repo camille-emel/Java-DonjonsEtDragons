@@ -6,6 +6,7 @@ public class EnemyDrake extends Enemy  {
         super("Zorg");
         this.life=15;
         this.power=4;
+        this.type="drake";
     }
 
 

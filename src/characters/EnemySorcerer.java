@@ -6,6 +6,7 @@ public class EnemySorcerer extends Enemy {
         super("Xoxo");
         this.life=9;
         this.power=2;
+        this.type="sorcerer";
     }
 
     @Override

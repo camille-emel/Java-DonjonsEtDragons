@@ -3,9 +3,10 @@ import board.Case;
 
 public class EnemyGoblin extends Enemy {
     public EnemyGoblin() {
-        super("Goblin");
+        super("Gounf");
         this.life = 6;
         this.power = 1;
+        this.type = "Goblin";
     }
 
     @Override
