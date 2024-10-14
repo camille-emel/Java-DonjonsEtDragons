@@ -11,7 +11,7 @@ public class EnemyDrake extends Enemy  {
 
 
     public void event() {
-        System.out.println("AHGROUGROU, I'm the Lord of this lab...blablabla");
+        System.out.println("AHGROUGROU, I'm "+ name + " the Lord of this lab...blablabla");
         super.event();
     }
 

@@ -20,7 +20,7 @@ public class Board {
         this.boardSize = boardSize;
         buildBoard();
     }
-
+    //Probléme de gestion de la casse 0 car notre perso débute à 1; donc le shuffle peut waste une casse importante.
     public void buildBoard(){
         numOfEnemyDrake(1);
         numOfEnemySorcerer(1);
@@ -52,14 +52,6 @@ public class Board {
         }
     }
 
-    public int getCratePositon() {
-        return cratePositon;
-    }
-
-    public void setCratePositon(int cratePositon) {
-        this.cratePositon = cratePositon;
-    }
-
     public ArrayList<Case> getBoard() {
         return board;
     }
@@ -67,55 +59,4 @@ public class Board {
     public void setBoard(ArrayList<Case> board) {
         this.board = board;
     }
-
-    public int getBoardSize() {
-        return boardSize;
-    }
-
-    public void setBoardSize(int boardSize) {
-        this.boardSize = boardSize;
-    }
-
-    public String getEnemy() {
-        return enemy;
-    }
-
-    public void setEnemy(String enemy) {
-
-        this.enemy = enemy;
-    }
-
-    public int getCrate() {
-        return cratePositon;
-    }
-
-    public void setCrate(int crate) {
-        this.cratePositon = crate;
-    }
-
-    public int getSorcererPosition() {
-        return sorcererPosition;
-    }
-
-    public void setSorcererPosition(int sorcererPosition) {
-        this.sorcererPosition = sorcererPosition;
-    }
-
-    public int getGoblinPosition() {
-        return goblinPosition;
-    }
-
-    public void setGoblinPosition(int goblinPosition) {
-        this.goblinPosition = goblinPosition;
-    }
-
-    public int getDragonPosition() {
-        return dragonPosition;
-    }
-
-    public void setDragonPosition(int dragonPosition) {
-        this.dragonPosition = dragonPosition;
-    }
-
-
 }

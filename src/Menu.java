@@ -124,7 +124,7 @@ public class Menu {
         System.out.println("----------------------");
         Boolean continuePlay = askPlayerYesORNo("Continue to play, throw dice ? ");
         if (continuePlay) {
-            return "continue";
+            return "throwTheDiceToMove";
         } else {
             gameEnd();
             return ""; //moche

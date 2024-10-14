@@ -2,6 +2,8 @@ package characters;
 
 import board.Case;
 
+import java.util.Collections;
+
 public class Enemy extends Personnage implements Case {
     public Enemy(String name) {
         super(name);
@@ -23,9 +25,14 @@ public class Enemy extends Personnage implements Case {
     @Override
     public void interaction(Personnage personnage) {
         this.life -= personnage.power;
-        System.out.println("il reste" +this.life+ "pv a l'ennemi");
+        System.out.println("Vous attaquez l'énnemi.");
+        System.out.println("Il reste " +this.life+ " pv a l'ennemi");
         if (this.life >0){
             personnage.life -= this.power;
-            System.out.println(personnage.life);
+            System.out.println("Vous avez perdu "+ personnage.life+ "point de vie.");
+            //Si il est pas mort, il fuit.
+//            if(this.life > 1){
+//
+//            }
         }}
 }

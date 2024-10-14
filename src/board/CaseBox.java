@@ -6,6 +6,7 @@ import items.defensive.Potion;
 import items.defensive.SmallPotion;
 import items.offensive.*;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class CaseBox implements Case {
@@ -41,39 +42,81 @@ public class CaseBox implements Case {
     }
 
     public void newWeaponSword(Personnage personnage) {
+        //comment sortir le text pour le mettre dans le menu ?
         System.out.println("You found a sword");
-        Weapon sword = new Swords();
-        personnage.setEquipmentOffensif(sword);
+        if (Objects.equals(personnage.getType(), "warrior")) {
+            Weapon sword = new Swords();
+            newPlayerGear(personnage,sword);
+            System.out.println("Your combat power is " + personnage.getPower());
+        }
     }
 
     public void newWeaponMace(Personnage personnage) {
         System.out.println("You found a mace");
-        Weapon mace = new Mace();
-        personnage.setEquipmentOffensif(mace);
+        if (Objects.equals(personnage.getType(), "warrior") && !Objects.equals(personnage.getEquipmentOffensif().getName(), "sword")) {
+            Weapon mace = new Mace();
+            newPlayerGear(personnage,mace);
+            System.out.println("You equip the mace, your combat power is " + personnage.getPower());
+        }
     }
 
     public void newSpellLightning(Personnage personnage) {
         System.out.println("You found a lightning spell");
-        Spell lightning = new Lightning();
-        personnage.setEquipmentOffensif(lightning);
+        if (Objects.equals(personnage.getType(), "magician") && !Objects.equals(personnage.getEquipmentOffensif().getName(), "sword")) {
+            Spell lightning = new Lightning();
+            newPlayerGear(personnage,lightning);
+            System.out.println("You can now use Lightning spell, your combat power is " + personnage.getPower());
+        }
     }
 
     public void newSpellFireball(Personnage personnage) {
         System.out.println("You found a fireball spell");
-        Spell fireball = new Fireball();
-        personnage.setEquipmentOffensif(fireball);
+        if (Objects.equals(personnage.getType(), "magician") && !Objects.equals(personnage.getEquipmentOffensif().getName(), "sword")) {
+            Spell fireball = new Fireball();
+            newPlayerGear(personnage,fireball);
+            System.out.println("You can now use Fireball spell, your combat power is " + personnage.getPower());
+
+        }
     }
 
     public void newSmallPotion(Personnage personnage) {
         System.out.println("You found a new potion");
-        Potion smallPotion = new SmallPotion();
+        int smallPotion = 2;
+        isPlayerMaxLife(personnage, smallPotion);
+//        Potion smallPotion = new SmallPotion();
         //how to use potion ?
         //personnage.setLife();
     }
 
     public void newLargePotion(Personnage personnage) {
         System.out.println("You found a new potion");
-        Potion largePotion = new LargePotion();
+        int largePotion = 2;
+        isPlayerMaxLife(personnage, largePotion);
+//        Potion largePotion = new LargePotion();
         //personnage.
+    }
+
+    //ALAID HORRIBLE
+    public void isPlayerMaxLife(Personnage personnage, int potionRegen) {
+        if (Objects.equals(personnage.getType(), "warrior")) {
+            if (personnage.getLife() != 10) {
+                personnage.setLife(personnage.getLife() + potionRegen);
+                if (personnage.getLife() > 10) {
+                    personnage.setLife(10);
+                }
+            }
+        }
+        if (Objects.equals(personnage.getType(), "magician")) {
+            if (personnage.getLife() != 6) {
+                personnage.setLife(personnage.getLife() + potionRegen);
+                if (personnage.getLife() > 6) {
+                    personnage.setLife(6);
+                }
+            }
+        }
+    }
+    public void newPlayerGear(Personnage personnage,EquipmentOffensif newStuff) {
+        personnage.setEquipmentOffensif(newStuff);
+        personnage.setPower(personnage.getPower() + newStuff.getAttackPower());
     }
 }

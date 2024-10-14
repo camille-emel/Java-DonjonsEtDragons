@@ -12,6 +12,7 @@ public class EnemyGoblin extends Enemy {
     @Override
     public void event() {
         System.out.println("A Goblin is here!");
+        System.out.println("Me "+ name+ ", me kill you");
         super.event();
 
     }
