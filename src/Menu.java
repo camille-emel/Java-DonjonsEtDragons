@@ -108,7 +108,7 @@ public class Menu {
         System.exit(0);
     }
 
-    public void playerCurrentPosition(Personnage personnage) {
+    public void displayPlayerCurrentPosition(Personnage personnage) {
         System.out.println("Your current position on board : " + personnage.getPosition());
     }
 
@@ -120,14 +120,14 @@ public class Menu {
         System.out.println("The dice rolled a : " + dice);
     }
 
-    public String continueToPlay() {
+    public Boolean continueToPlay() {
         System.out.println("----------------------");
         Boolean continuePlay = askPlayerYesORNo("Continue to play, throw dice ? ");
         if (continuePlay) {
-            return "throwTheDiceToMove";
+            return true;
         } else {
             gameEnd();
-            return ""; //moche
+            return false; //moche
         }
     }
 

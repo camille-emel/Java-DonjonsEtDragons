@@ -8,7 +8,7 @@ import java.util.Random;
 import board.Case;
 
 public class Game {
-    private Menu menu;
+    private final Menu menu;
     private Personnage personnage;
     private Board board;
 
@@ -16,19 +16,20 @@ public class Game {
     public Game() {
         this.menu = new Menu();
         this.board = new Board(10);
+        this.personnage = createCharacter();
     }
 
     public void gameInit() {
-        createCharacter();
+        this.board = new Board(10);
+        this.personnage = createCharacter();
         game();
-        //comfirme replay
-        /*if replay return inti*/
     }
 
-    public void createCharacter() {
-        this.personnage = menu.selectNameAndType();
-        menu.confirmeCharacter(this.personnage);
+    public Personnage createCharacter() {
+        Personnage personnage = menu.selectNameAndType();
+        menu.confirmeCharacter(personnage);
         personnage.setPosition(1);
+        return personnage;
     }
 
     //Fin du jeu si le personnage meurt
@@ -40,39 +41,42 @@ public class Game {
 
     //Découpé cette monstruosité
     public void game() {
-        ArrayList<Case> gameBoard = board.getBoard();
         do {
-            //Vérif si player est en vie
-            isPlayerDead();
-
-            //Donne la pos actuel de player
-            menu.playerCurrentPosition(personnage);
-
             //Propose au joueur de quitter la partie a chaque tour.
-            String playerChooseToContinu = menu.continueToPlay();
-            if (Objects.equals(playerChooseToContinu, "throwTheDiceToMove")) {
+            boolean playerChooseToContinu = menu.continueToPlay();
+            if (!playerChooseToContinu) {
+                menu.gameEnd();
+            }
 
-                //S'il continue de jouer, il lance un dès et sa position est update.
-                int newPlayerPosition = movePlayer(personnage);
-                if (newPlayerPosition >= gameBoard.size()) {
-                   if(menu.victory(personnage)){
-                       gameInit();
-                   }
-                }
-                //Fait par Gaby
-                Case actuel = gameBoard.get(newPlayerPosition);
-                actuel.event();
-                actuel.interaction(personnage);
+            menu.displayPlayerCurrentPosition(personnage);
 
-                personnage.setPosition(newPlayerPosition);
+            //S'il continue de jouer, il lance un dès et sa position est update.
+            int updatedPosition = movePlayer(personnage);
+            this.personnage.setPosition(updatedPosition);
+
+
+            //Clunky "mange" une case ou out of bound
+            if (isGameOver()) {
+                menu.victory(personnage);
+                gameInit();
+            } else {
+                //Out of bound sans la conditionnel
+                board.faitParChatGaby(personnage);
                 menu.playNewPosition(personnage);
             }
         }
-        while (personnage.getPosition() <= gameBoard.size());
+        while (!isGameOver());
+    }
+
+
+    public boolean isGameOver() {
+        boolean hasWon = personnage.getPosition() >= this.board.getBoardSize();
+        boolean isDead = personnage.getLife() < 1;
+        return isDead || hasWon;
     }
 
     /*
-//        {
+//
 //            isPlayerDead();
 //            menu.playerCurrentPosition(personnage);
 //
@@ -124,7 +128,6 @@ public class Game {
 //    }
 */
     public int movePlayer(Personnage personnage) {
-        menu.playerCurrentPosition(personnage);
         return personnage.getPosition() + dice();
     }
 

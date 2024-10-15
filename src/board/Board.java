@@ -3,15 +3,13 @@ package board;
 import characters.EnemyDrake;
 import characters.EnemyGoblin;
 import characters.EnemySorcerer;
+import characters.Personnage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Board {
     private String enemy;
-    private int cratePositon;
-    private int sorcererPosition;
-    private int goblinPosition;
-    private int dragonPosition;
     private ArrayList<Case> board ;
     private int boardSize;
 
@@ -20,6 +18,13 @@ public class Board {
         this.boardSize = boardSize;
         buildBoard();
     }
+    public void faitParChatGaby(Personnage personnage) {
+        Case actuel = board.get(personnage.getPosition());
+        actuel.event();
+        actuel.interaction(personnage);
+
+    }
+
     //Probléme de gestion de la casse 0 car notre perso débute à 1; donc le shuffle peut waste une casse importante.
     public void buildBoard(){
         numOfEnemyDrake(1);
@@ -58,5 +63,9 @@ public class Board {
 
     public void setBoard(ArrayList<Case> board) {
         this.board = board;
+    }
+
+    public int getBoardSize() {
+        return boardSize;
     }
 }
