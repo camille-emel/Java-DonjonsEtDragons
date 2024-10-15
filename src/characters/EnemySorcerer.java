@@ -5,6 +5,7 @@ public class EnemySorcerer extends Enemy {
     public EnemySorcerer(){
         super("Xoxo");
         this.life=9;
+        this.maxLife = this.life;
         this.power=2;
         this.type="sorcerer";
     }

@@ -9,6 +9,7 @@ import items.offensive.*;
 import java.util.Objects;
 import java.util.Random;
 
+
 public class CaseBox implements Case {
     @Override
     public void event() {
@@ -96,7 +97,7 @@ public class CaseBox implements Case {
         //personnage.
     }
 
-    //ALAID HORRIBLE
+    //Bonjour, je m'appel ALAIDE HORRIBLE...
     public void isPlayerMaxLife(Personnage personnage, int potionRegen) {
         if (Objects.equals(personnage.getType(), "warrior")) {
             if (personnage.getLife() != 10) {

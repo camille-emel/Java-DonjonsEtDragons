@@ -138,11 +138,7 @@ public class Menu {
     public boolean playAgain() {
         return askPlayerYesORNo("Do you want to play again ? ");
     }
-
-
-//    public void turnCounter(int turnCounter) {
-//        System.out.println("---------------------------");
-//        System.out.println("Start of turn : " + turnCounter);
-//
+//    static void drakeIntroText(String name){
+//        System.out.println("AHGROUGROU, I'm "+ name + " the Lord of this lab...blablabla");
 //    }
 }

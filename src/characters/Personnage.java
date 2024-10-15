@@ -7,6 +7,7 @@ public abstract class Personnage {
     protected String name;
     protected String type;
     protected int life;
+    protected int maxLife;
     protected int power;
     protected EquipmentOffensif equipmentOffensif;
     protected EquipmentDefensive equipmentDefensive;
