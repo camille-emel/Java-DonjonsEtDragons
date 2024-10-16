@@ -28,10 +28,10 @@ public class CaseBox implements Case {
                 newLargePotion(personnage);
                 break;
             case 3:
-                newWeaponMace(personnage);
+                newSpellLightning(personnage);
                 break;
             case 4:
-                newSpellLightning(personnage);
+                newWeaponMace(personnage);
                 break;
             case 5:
                 newWeaponSword(personnage);
@@ -81,41 +81,44 @@ public class CaseBox implements Case {
     }
 
     public void newSmallPotion(Personnage personnage) {
-        System.out.println("You found a new potion");
-        int smallPotion = 2;
-        isPlayerMaxLife(personnage, smallPotion);
+        System.out.println("You found a small potion");
+        Potion smallPotion = new SmallPotion();
+        smallPotion.healPlayer(personnage);
+//        int smallPotion = 2;
+//        isPlayerMaxLife(personnage, smallPotion);
 //        Potion smallPotion = new SmallPotion();
         //how to use potion ?
         //personnage.setLife();
     }
 
     public void newLargePotion(Personnage personnage) {
-        System.out.println("You found a new potion");
-        int largePotion = 2;
-        isPlayerMaxLife(personnage, largePotion);
-//        Potion largePotion = new LargePotion();
+        System.out.println("You found a large potion");
+        Potion largePotion = new LargePotion();
+        largePotion.healPlayer(personnage);
+//        int largePotion = 2;
+//        isPlayerMaxLife(personnage, largePotion.getRegen());
         //personnage.
     }
 
     //Bonjour, je m'appel ALAIDE HORRIBLE...
-    public void isPlayerMaxLife(Personnage personnage, int potionRegen) {
-        if (Objects.equals(personnage.getType(), "warrior")) {
-            if (personnage.getLife() != 10) {
-                personnage.setLife(personnage.getLife() + potionRegen);
-                if (personnage.getLife() > 10) {
-                    personnage.setLife(10);
-                }
-            }
-        }
-        if (Objects.equals(personnage.getType(), "magician")) {
-            if (personnage.getLife() != 6) {
-                personnage.setLife(personnage.getLife() + potionRegen);
-                if (personnage.getLife() > 6) {
-                    personnage.setLife(6);
-                }
-            }
-        }
-    }
+//    public void isPlayerMaxLife(Personnage personnage, int potionRegen) {
+//        if (Objects.equals(personnage.getType(), "warrior")) {
+//            if (personnage.getLife() != 10) {
+//                personnage.setLife(personnage.getLife() + potionRegen);
+//                if (personnage.getLife() > 10) {
+//                    personnage.setLife(10);
+//                }
+//            }
+//        }
+//        if (Objects.equals(personnage.getType(), "magician")) {
+//            if (personnage.getLife() != 6) {
+//                personnage.setLife(personnage.getLife() + potionRegen);
+//                if (personnage.getLife() > 6) {
+//                    personnage.setLife(6);
+//                }
+//            }
+//        }
+//    }
     public void newPlayerGear(Personnage personnage,EquipmentOffensif newStuff) {
         personnage.setEquipmentOffensif(newStuff);
         personnage.setPower(personnage.getPower() + newStuff.getAttackPower());

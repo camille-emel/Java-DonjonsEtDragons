@@ -26,7 +26,7 @@ public class Game {
     }
 
     public Personnage createCharacter() {
-        Personnage personnage = menu.selectNameAndType();
+        personnage = menu.selectNameAndType();
         menu.confirmeCharacter(personnage);
         personnage.setPosition(1);
         return personnage;

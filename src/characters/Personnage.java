@@ -30,7 +30,9 @@ public abstract class Personnage {
         return heroLife - monsterPower;
     }
 
-
+    public int getMaxLife(){
+        return maxLife;
+    }
     public void setName(String name) {
         this.name = name;
     }
