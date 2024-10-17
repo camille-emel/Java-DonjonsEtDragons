@@ -1,9 +1,11 @@
+package core;
+
 import board.Board;
 import board.Dice;
 import characters.Personnage;
 
 /**
- * The type Game.
+ * The type core.Game.
  */
 public class Game {
     private final Menu menu;
@@ -12,7 +14,7 @@ public class Game {
     private Dice dice;
 
     /**
-     * Instantiates a new Game.
+     * Instantiates a new core.Game.
      */
     public Game() {
         this.menu = new Menu();
@@ -22,7 +24,7 @@ public class Game {
     }
 
     /**
-     * Game init.
+     * core.Game init.
      */
     public void gameInit() {
         this.board = new Board(10);
@@ -53,32 +55,33 @@ public class Game {
     }
 
     /**
-     * Game.
+     * core.Game.
      */
 //Découpé cette monstruosité
     public void game() {
         do {
+            menu.displayPlayerCurrentPosition(personnage);
             //Propose au joueur de quitter la partie a chaque tour.
             boolean playerChooseToContinu = menu.continueToPlay();
+
             if (!playerChooseToContinu) {
                 menu.gameEnd();
             }
 
-            menu.displayPlayerCurrentPosition(personnage);
 
             //S'il continue de jouer, il lance un dès et sa position est update.
             int updatedPosition = movePlayer(personnage);
             this.personnage.setPosition(updatedPosition);
+            menu.playNewPosition(personnage);
 
 
             //Clunky "mange" une case ou out of bound
             if (isGameOver()) {
-                menu.victory(personnage);
+                menu.victoryMessage(personnage);
                 gameInit();
             } else {
                 //Out of bound sans la conditionnel
                 board.faitParChatGaby(personnage);
-                menu.playNewPosition(personnage);
             }
         }
         while (!isGameOver());
@@ -133,9 +136,9 @@ public class Game {
 //                //try/catch fait sur demande du kit de développement... Je n'engage aucune responsabilité dans cette "chose".
 ////                try {
 ////                    if (newPlayerPosition > gameBoard.size()) {
-////                        throw new CharOutOfBound("Your position is : 64");
+////                        throw new core.CharOutOfBound("Your position is : 64");
 ////                    }
-////                } catch (CharOutOfBound e) {
+////                } catch (core.CharOutOfBound e) {
 ////                    System.out.println(e.getMessage());
 ////                }
 //            }

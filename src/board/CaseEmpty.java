@@ -1,6 +1,7 @@
 package board;
-
+import core.ShitHappen.*;
 import characters.Personnage;
+import core.ShitHappen;
 
 /**
  * The type Case empty.
@@ -12,7 +13,7 @@ public class CaseEmpty implements Case {
     }
 
     @Override
-    public void interaction(Personnage personnage) {
-
+    public ShitHappen interaction(Personnage personnage) {
+        return ShitHappen.PLAYER_NOT_DEAD;
     }
 }

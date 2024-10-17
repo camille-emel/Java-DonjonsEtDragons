@@ -1,6 +1,9 @@
 package characters;
 
+import core.ShitHappen;
+
 import board.Case;
+import core.Game;
 
 import java.util.Collections;
 
@@ -32,19 +35,16 @@ public class Enemy extends Personnage implements Case {
     }
 
     @Override
-    public void interaction(Personnage personnage) {
+    public ShitHappen interaction(Personnage personnage) {
         this.life -= personnage.power;
         System.out.println("Vous attaquez l'énnemi.");
         System.out.println("Il reste " + this.life + " pv a l'ennemi");
         if (this.life > 0) {
             personnage.life -= this.power;
-            System.out.println("Vous avez perdu " + personnage.life + "point de vie.");
-//            //Si il est pas mort, il fuit.
-//            if (this.life > 1) {
-//
-//
-monsterFlee(personnage);
-//            }
-        }
+            System.out.println("Vous avez perdu " + personnage.life + " point de vie.");
+            return ShitHappen.ENEMY_IS_NOT_DEAD;
+        }return ShitHappen.ENEMY_IS_DEAD;
     }
 }
+//    public void monsterFlee() {
+//    }

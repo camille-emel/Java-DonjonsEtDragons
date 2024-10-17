@@ -1,3 +1,5 @@
+import core.Game;
+
 /**
  * The type Main.
  */

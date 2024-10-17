@@ -1,6 +1,7 @@
 package board;
 
 import characters.*;
+import core.ShitHappen;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +11,7 @@ import java.util.Collections;
  */
 public class Board {
     private String enemy;
-    private ArrayList<Case> board ;
+    private ArrayList<Case> board;
     private int boardSize;
 
     /**
@@ -23,46 +24,71 @@ public class Board {
         this.boardSize = boardSize;
         buildBoard();
     }
-    public void monsterFlee(Personnage personnage) {
-        actualCase(personnage);
-        if (actualCase(personnage) instanceof Enemy){
-            Dice dice = new Dice();
-            personnage.setPosition(personnage.getPosition()+ dice.diceRoll());
-            System.out.println("Byebye sucker");
-        }
-    }
+//
+
     /**
      * Fait par chat gaby.
      *
      * @param personnage the personnage
+     * @return the case
      */
     public Case actualCase(Personnage personnage) {
         return board.get(personnage.getPosition());
     }
 
+    /**
+     * Fait par chat gaby.
+     *
+     * @param personnage the personnage
+     */
     public void faitParChatGaby(Personnage personnage) {
-        actualCase(personnage).event();
-        actualCase(personnage).interaction(personnage);
-        if (personnage.getLife()>0){
-            monsterFlee(personnage);
-        }
+        Case enemy = actualCase(personnage);
+        int position = personnage.getPosition();
+        enemy.event();
+        ShitHappen end = actualCase(personnage).interaction(personnage);
 
+        if (end == ShitHappen.ENEMY_IS_NOT_DEAD) {
+            monsterFlee(enemy,position);
+        }
+    }
+
+
+    /**
+     * Monster flee.
+     *
+     * @param enemy    the enemy
+     * @param position the position
+     */
+    public void monsterFlee(Case enemy, int position) {
+        if (enemy instanceof Enemy) {
+            Dice dice = new Dice();
+            board.remove(position);
+            board.set(position, new CaseEmpty());
+            board.set(position+dice.diceRoll(), enemy);
+            System.out.println("Byebye sucker");
+        }
     }
 
     /**
      * Build board.
      */
 //Probléme de gestion de la casse 0 car notre perso débute à 1; donc le shuffle peut waste une casse importante.
-    public void buildBoard(){
+    public void buildBoard() {
         numOfEnemyDrake(0);
         numOfEnemySorcerer(0);
         numOfEnemyGoblin(0);
         numOfCaseBox(0);
-        for(int i = board.size(); i< boardSize; i++) {
+        for (int i = board.size(); i < boardSize; i++) {
             board.add(new CaseEmpty());
         }
         Collections.shuffle(board);
-        board.add(2,new EnemyDrake());
+        board.add(2, new EnemyDrake());
+    }
+
+    /**
+     * Where the fuck is my enemy.
+     */
+    public void whereTheFuckIsMyEnemy() {
     }
 
     /**
@@ -70,8 +96,8 @@ public class Board {
      *
      * @param num the num
      */
-    public void numOfEnemyDrake(int num){
-        for (int i=0;i<num;i++) {
+    public void numOfEnemyDrake(int num) {
+        for (int i = 0; i < num; i++) {
             board.add(new EnemyDrake());
         }
     }
@@ -81,8 +107,8 @@ public class Board {
      *
      * @param num the num
      */
-    public void numOfEnemySorcerer(int num){
-        for (int i=0;i<num;i++) {
+    public void numOfEnemySorcerer(int num) {
+        for (int i = 0; i < num; i++) {
             board.add(new EnemySorcerer());
         }
     }
@@ -92,8 +118,8 @@ public class Board {
      *
      * @param num the num
      */
-    public void numOfEnemyGoblin(int num){
-        for (int i=0;i<num;i++) {
+    public void numOfEnemyGoblin(int num) {
+        for (int i = 0; i < num; i++) {
             board.add(new EnemyGoblin());
         }
     }
@@ -103,8 +129,8 @@ public class Board {
      *
      * @param num the num
      */
-    public void numOfCaseBox(int num){
-        for (int i=0;i<num;i++) {
+    public void numOfCaseBox(int num) {
+        for (int i = 0; i < num; i++) {
             board.add(new CaseBox());
         }
     }

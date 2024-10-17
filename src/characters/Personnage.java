@@ -66,9 +66,17 @@ public abstract class Personnage {
         this.name = name;
         this.type = type;
     }
+
+    /**
+     * Monster flee.
+     */
     public void monsterFlee(){
 
     }
+
+    /**
+     * Player flee.
+     */
     public void playerFlee(){
 
     }

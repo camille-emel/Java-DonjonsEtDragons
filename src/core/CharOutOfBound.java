@@ -1,3 +1,5 @@
+package core;
+
 /**
  * The type Char out of bound.
  */

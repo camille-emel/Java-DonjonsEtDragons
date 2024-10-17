@@ -1,5 +1,5 @@
 package board;
-
+import core.ShitHappen;
 import characters.Personnage;
 
 /**
@@ -16,7 +16,8 @@ public interface Case {
      * Interaction.
      *
      * @param personnage the personnage
+     * @return the shit happen
      */
-    void interaction(Personnage personnage);
+    ShitHappen interaction(Personnage personnage);
 
 }

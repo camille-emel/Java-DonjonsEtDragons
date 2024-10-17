@@ -1,6 +1,7 @@
 package board;
 
 import characters.Personnage;
+import core.ShitHappen;
 import items.defensive.LargePotion;
 import items.defensive.Potion;
 import items.defensive.SmallPotion;
@@ -20,7 +21,7 @@ public class CaseBox implements Case {
     }
 
     @Override
-    public void interaction(Personnage personnage) {
+    public ShitHappen interaction(Personnage personnage) {
         Random randomNumbers = new Random();
         int diceRoll = randomNumbers.nextInt(6) + 1;
         switch (diceRoll) {
@@ -42,7 +43,7 @@ public class CaseBox implements Case {
             case 6:
                 newSpellFireball(personnage);
                 break;
-        }
+        }return ShitHappen.PLAYER_NOT_DEAD;
     }
 
     /**

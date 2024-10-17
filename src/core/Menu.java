@@ -1,3 +1,5 @@
+package core;
+
 import characters.Magician;
 import characters.Personnage;
 import characters.Warrior;
@@ -12,14 +14,14 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
- * The type Menu.
+ * The type core.Menu.
  */
 public class Menu {
 
     private final Scanner myObj = new Scanner(System.in);
 
     /**
-     * Instantiates a new Menu.
+     * Instantiates a new core.Menu.
      */
     public Menu() {
         displayMenu();
@@ -86,7 +88,7 @@ public class Menu {
     public void confirmeCharacter(Personnage personnage) {
         boolean confirme = askPlayerYesORNo("Confirme ? ");
         if (confirme) {
-            System.out.println("Game starts!");//start board
+            System.out.println("core.Game starts!");//start board
         } else if (!confirme) {
             selectNameAndType();
             confirmeCharacter(personnage);
@@ -151,10 +153,10 @@ public class Menu {
 
 
     /**
-     * Game end.
+     * core.Game end.
      */
     public void gameEnd() {
-        System.out.println("Game ends!");
+        System.out.println("core.Game ends!");
         System.exit(0);
     }
 
@@ -164,6 +166,8 @@ public class Menu {
      * @param personnage the personnage
      */
     public void displayPlayerCurrentPosition(Personnage personnage) {
+        System.out.println("----------------------");
+
         System.out.println("Your current position on board : " + personnage.getPosition());
     }
 
@@ -191,7 +195,6 @@ public class Menu {
      * @return the boolean
      */
     public Boolean continueToPlay() {
-        System.out.println("----------------------");
         Boolean continuePlay = askPlayerYesORNo("Continue to play, throw dice ? ");
         if (continuePlay) {
             return true;
@@ -207,7 +210,7 @@ public class Menu {
      * @param personnage the personnage
      * @return the boolean
      */
-    public boolean victory(Personnage personnage) {
+    public boolean victoryMessage(Personnage personnage) {
         System.out.println("GG YOU WIN " + personnage.getName());
         return playAgain();
     }
