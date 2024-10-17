@@ -10,6 +10,9 @@ import java.util.Objects;
 import java.util.Random;
 
 
+/**
+ * The type Case box.
+ */
 public class CaseBox implements Case {
     @Override
     public void event() {
@@ -42,6 +45,11 @@ public class CaseBox implements Case {
         }
     }
 
+    /**
+     * New weapon sword.
+     *
+     * @param personnage the personnage
+     */
     public void newWeaponSword(Personnage personnage) {
         //comment sortir le text pour le mettre dans le menu ?
         System.out.println("You found a sword");
@@ -52,6 +60,11 @@ public class CaseBox implements Case {
         }
     }
 
+    /**
+     * New weapon mace.
+     *
+     * @param personnage the personnage
+     */
     public void newWeaponMace(Personnage personnage) {
         System.out.println("You found a mace");
         if (Objects.equals(personnage.getType(), "warrior") && !Objects.equals(personnage.getEquipmentOffensif().getName(), "sword")) {
@@ -61,6 +74,11 @@ public class CaseBox implements Case {
         }
     }
 
+    /**
+     * New spell lightning.
+     *
+     * @param personnage the personnage
+     */
     public void newSpellLightning(Personnage personnage) {
         System.out.println("You found a lightning spell");
         if (Objects.equals(personnage.getType(), "magician") && !Objects.equals(personnage.getEquipmentOffensif().getName(), "sword")) {
@@ -70,6 +88,11 @@ public class CaseBox implements Case {
         }
     }
 
+    /**
+     * New spell fireball.
+     *
+     * @param personnage the personnage
+     */
     public void newSpellFireball(Personnage personnage) {
         System.out.println("You found a fireball spell");
         if (Objects.equals(personnage.getType(), "magician") && !Objects.equals(personnage.getEquipmentOffensif().getName(), "sword")) {
@@ -80,6 +103,11 @@ public class CaseBox implements Case {
         }
     }
 
+    /**
+     * New small potion.
+     *
+     * @param personnage the personnage
+     */
     public void newSmallPotion(Personnage personnage) {
         System.out.println("You found a small potion");
         Potion smallPotion = new SmallPotion();
@@ -91,6 +119,11 @@ public class CaseBox implements Case {
         //personnage.setLife();
     }
 
+    /**
+     * New large potion.
+     *
+     * @param personnage the personnage
+     */
     public void newLargePotion(Personnage personnage) {
         System.out.println("You found a large potion");
         Potion largePotion = new LargePotion();
@@ -100,7 +133,13 @@ public class CaseBox implements Case {
         //personnage.
     }
 
-    //Bonjour, je m'appel ALAIDE HORRIBLE...
+    /**
+     * New player gear.
+     *
+     * @param personnage the personnage
+     * @param newStuff   the new stuff
+     */
+//Bonjour, je m'appel ALAIDE HORRIBLE...
 //    public void isPlayerMaxLife(Personnage personnage, int potionRegen) {
 //        if (Objects.equals(personnage.getType(), "warrior")) {
 //            if (personnage.getLife() != 10) {

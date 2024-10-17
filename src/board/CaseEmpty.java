@@ -2,6 +2,9 @@ package board;
 
 import characters.Personnage;
 
+/**
+ * The type Case empty.
+ */
 public class CaseEmpty implements Case {
     @Override
     public void event() {

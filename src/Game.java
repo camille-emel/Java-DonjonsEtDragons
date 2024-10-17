@@ -1,30 +1,40 @@
 import board.Board;
+import board.Dice;
 import characters.Personnage;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
-
-import board.Case;
-
+/**
+ * The type Game.
+ */
 public class Game {
     private final Menu menu;
     private Personnage personnage;
     private Board board;
+    private Dice dice;
 
-
+    /**
+     * Instantiates a new Game.
+     */
     public Game() {
         this.menu = new Menu();
-        this.board = new Board(10);
+        this.board = new Board(20);
         this.personnage = createCharacter();
+        this.dice = new Dice();
     }
 
+    /**
+     * Game init.
+     */
     public void gameInit() {
         this.board = new Board(10);
         this.personnage = createCharacter();
         game();
     }
 
+    /**
+     * Create character personnage.
+     *
+     * @return the personnage
+     */
     public Personnage createCharacter() {
         personnage = menu.selectNameAndType();
         menu.confirmeCharacter(personnage);
@@ -32,14 +42,20 @@ public class Game {
         return personnage;
     }
 
-    //Fin du jeu si le personnage meurt
+    /**
+     * Is player dead.
+     */
+//Fin du jeu si le personnage meurt
     public void isPlayerDead() {
         if (personnage.getLife() < 1) {
             menu.gameEnd();
         }
     }
 
-    //Découpé cette monstruosité
+    /**
+     * Game.
+     */
+//Découpé cette monstruosité
     public void game() {
         do {
             //Propose au joueur de quitter la partie a chaque tour.
@@ -69,13 +85,24 @@ public class Game {
     }
 
 
+    /**
+     * Is game over boolean.
+     *
+     * @return the boolean
+     */
     public boolean isGameOver() {
         boolean hasWon = personnage.getPosition() >= this.board.getBoardSize();
         boolean isDead = personnage.getLife() < 1;
         return isDead || hasWon;
     }
 
-    /*
+    /**
+     * Move player int.
+     *
+     * @param personnage the personnage
+     * @return the int
+     */
+/*
 //
 //            isPlayerDead();
 //            menu.playerCurrentPosition(personnage);
@@ -128,16 +155,15 @@ public class Game {
 //    }
 */
     public int movePlayer(Personnage personnage) {
-        return personnage.getPosition() + dice();
+        return personnage.getPosition() + dice.diceRoll();
     }
 
-    //Lance un dès et affiche le result
-    public int dice() {
-        Random randomNumbers = new Random();
-//        int diceRoll = randomNumbers.nextInt(6) + 1;
-        int diceRoll = 1;
-        menu.diceResult(diceRoll);
-        return diceRoll;
-    }
+    /**
+     * board.Dice int.
+     *
+     * @return the int
+     */
+//Lance un dès et affiche le result
+
 
 }

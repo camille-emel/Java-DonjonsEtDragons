@@ -1,7 +1,13 @@
 package characters;
 import board.Case;
 
+/**
+ * The type Enemy sorcerer.
+ */
 public class EnemySorcerer extends Enemy {
+    /**
+     * Instantiates a new Enemy sorcerer.
+     */
     public EnemySorcerer(){
         super("Xoxo");
         this.life=9;

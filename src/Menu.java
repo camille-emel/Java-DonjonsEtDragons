@@ -11,19 +11,38 @@ import items.offensive.Weapon;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * The type Menu.
+ */
 public class Menu {
 
     private final Scanner myObj = new Scanner(System.in);
+
+    /**
+     * Instantiates a new Menu.
+     */
     public Menu() {
         displayMenu();
     }
 
+    /**
+     * Ask player input string.
+     *
+     * @param askInput the ask input
+     * @return the string
+     */
     public String askPlayerInput(String askInput) {
         System.out.print(askInput);
         return myObj.nextLine();
     }
 
-    //centralisation du y/n
+    /**
+     * Ask player yes or no boolean.
+     *
+     * @param question the question
+     * @return the boolean
+     */
+//centralisation du y/n
     public Boolean askPlayerYesORNo(String question) {
         String playerResponse = askPlayerInput(question + "y/n?");
         switch (playerResponse) {
@@ -36,6 +55,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Display menu.
+     */
     public void displayMenu() {
         boolean playerResponse = play();
         switch (playerResponse) {
@@ -47,10 +69,20 @@ public class Menu {
         }
     }
 
+    /**
+     * Play boolean.
+     *
+     * @return the boolean
+     */
     public Boolean play() {
         return askPlayerYesORNo("Do you want to play ? ");
     }
 
+    /**
+     * Confirme character.
+     *
+     * @param personnage the personnage
+     */
     public void confirmeCharacter(Personnage personnage) {
         boolean confirme = askPlayerYesORNo("Confirme ? ");
         if (confirme) {
@@ -63,10 +95,20 @@ public class Menu {
         }
     }
 
+    /**
+     * Gets player name.
+     *
+     * @return the player name
+     */
     public String getPlayerName() {
         return askPlayerInput("Enter character name : ");
     }
 
+    /**
+     * Gets player type.
+     *
+     * @return the player type
+     */
     public String getPlayerType() {
         String characterClass = askPlayerInput("Enter character class : " +
                 "1 for warrior or 2 for magician : ");
@@ -80,6 +122,11 @@ public class Menu {
         }
     }
 
+    /**
+     * Select name and type personnage.
+     *
+     * @return the personnage
+     */
     public Personnage selectNameAndType() {
         String name = getPlayerName();
         String type = getPlayerType();
@@ -103,23 +150,46 @@ public class Menu {
     }
 
 
+    /**
+     * Game end.
+     */
     public void gameEnd() {
         System.out.println("Game ends!");
         System.exit(0);
     }
 
+    /**
+     * Display player current position.
+     *
+     * @param personnage the personnage
+     */
     public void displayPlayerCurrentPosition(Personnage personnage) {
         System.out.println("Your current position on board : " + personnage.getPosition());
     }
 
+    /**
+     * Play new position.
+     *
+     * @param personnage the personnage
+     */
     public void playNewPosition(Personnage personnage) {
         System.out.println("Your new position : " + personnage.getPosition());
     }
 
+    /**
+     * board.Dice result.
+     *
+     * @param dice the dice
+     */
     public void diceResult(int dice) {
         System.out.println("The dice rolled a : " + dice);
     }
 
+    /**
+     * Continue to play boolean.
+     *
+     * @return the boolean
+     */
     public Boolean continueToPlay() {
         System.out.println("----------------------");
         Boolean continuePlay = askPlayerYesORNo("Continue to play, throw dice ? ");
@@ -131,10 +201,22 @@ public class Menu {
         }
     }
 
+    /**
+     * Victory boolean.
+     *
+     * @param personnage the personnage
+     * @return the boolean
+     */
     public boolean victory(Personnage personnage) {
         System.out.println("GG YOU WIN " + personnage.getName());
         return playAgain();
     }
+
+    /**
+     * Play again boolean.
+     *
+     * @return the boolean
+     */
     public boolean playAgain() {
         return askPlayerYesORNo("Do you want to play again ? ");
     }

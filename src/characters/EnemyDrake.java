@@ -2,7 +2,13 @@ package characters;
 import board.Case;
 
 
+/**
+ * The type Enemy drake.
+ */
 public class EnemyDrake extends Enemy  {
+    /**
+     * Instantiates a new Enemy drake.
+     */
     public EnemyDrake(){
         super("Zorg");
         this.life=15;
