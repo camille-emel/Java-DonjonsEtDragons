@@ -46,5 +46,4 @@ public class Enemy extends Personnage implements Case {
         }return ShitHappen.ENEMY_IS_DEAD;
     }
 }
-//    public void monsterFlee() {
-//    }
+

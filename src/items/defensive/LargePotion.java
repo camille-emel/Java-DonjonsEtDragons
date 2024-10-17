@@ -11,5 +11,4 @@ public class LargePotion extends Potion {
         super("Large potion");
         this.regen = 5;
     }
-
 }
