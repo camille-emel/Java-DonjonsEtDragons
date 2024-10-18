@@ -1,5 +1,4 @@
 package characters;
-import board.Case;
 
 /**
  * The type Enemy goblin.
@@ -17,10 +16,10 @@ public class EnemyGoblin extends Enemy {
     }
 
     @Override
-    public void event() {
+    public void display() {
         System.out.println("A Goblin is here!");
         System.out.println("Me "+ name+ ", me kill you");
-        super.event();
+        super.display();
 
     }
 

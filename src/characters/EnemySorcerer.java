@@ -1,5 +1,4 @@
 package characters;
-import board.Case;
 
 /**
  * The type Enemy sorcerer.
@@ -17,10 +16,10 @@ public class EnemySorcerer extends Enemy {
     }
 
     @Override
-    public void event() {
+    public void display() {
         System.out.println("A wild sorcerer is in this room ");
         System.out.println("I m " + name + "and i will destroy you !");
-        super.event();
+        super.display();
     }
 
 

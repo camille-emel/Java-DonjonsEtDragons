@@ -8,7 +8,7 @@ import core.ShitHappen;
  */
 public class CaseEmpty implements Case {
     @Override
-    public void event() {
+    public void display() {
         System.out.println("This room is empty");
     }
 

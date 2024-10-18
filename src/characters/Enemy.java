@@ -30,7 +30,7 @@ public class Enemy extends Personnage implements Case {
     }
 
     @Override
-    public void event() {
+    public void display() {
         System.out.println(this.toString());
     }
 

@@ -16,7 +16,7 @@ import java.util.Random;
  */
 public class CaseBox implements Case {
     @Override
-    public void event() {
+    public void display() {
         System.out.println("There is a box");
     }
 

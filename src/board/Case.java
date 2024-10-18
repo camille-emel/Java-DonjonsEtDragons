@@ -10,7 +10,7 @@ public interface Case {
     /**
      * Event.
      */
-    void event();
+    void display();
 
     /**
      * Interaction.

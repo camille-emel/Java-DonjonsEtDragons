@@ -1,5 +1,4 @@
 package characters;
-import board.Case;
 
 
 /**
@@ -18,10 +17,10 @@ public class EnemyDrake extends Enemy  {
     }
 
 
-    public void event() {
+    public void display() {
 //        menu.drakeIntroText(name);
         System.out.println("AHGROUGROU, I'm "+ name + " the Lord of this lab...blablabla");
-        super.event();
+        super.display();
     }
 
 

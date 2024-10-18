@@ -67,14 +67,10 @@ public class Game {
             if (!playerChooseToContinu) {
                 menu.gameEnd();
             }
-
-
             //S'il continue de jouer, il lance un dès et sa position est update.
             int updatedPosition = movePlayer(personnage);
             this.personnage.setPosition(updatedPosition);
             menu.playNewPosition(personnage);
-
-
             //Clunky "mange" une case ou out of bound
             if (isGameOver()) {
                 menu.victoryMessage(personnage);
@@ -86,7 +82,6 @@ public class Game {
         }
         while (!isGameOver());
     }
-
 
     /**
      * Is game over boolean.

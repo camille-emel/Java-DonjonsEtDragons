@@ -44,7 +44,7 @@ public class Board {
     public void faitParChatGaby(Personnage personnage) {
         Case enemy = actualCase(personnage);
         int position = personnage.getPosition();
-        enemy.event();
+        enemy.display();
         ShitHappen end = actualCase(personnage).interaction(personnage);
 
         if (end == ShitHappen.ENEMY_IS_NOT_DEAD) {
