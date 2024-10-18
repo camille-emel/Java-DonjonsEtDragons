@@ -13,17 +13,26 @@ public class Database {
     private ResultSet resultSet = null;
     public Database(){
         try {
-
             String url = "jdbc:mysql://localhost:3306/d&d";
             String username = "root";
             String password = "";
             //connect
             Connection connection = DriverManager.getConnection(url, username, password);
-            //create statement
 
-            // do SQL query
 
-            //Process result
+
+            try {
+                //create statement
+
+                // do SQL query
+
+                //Process result
+            }
+            catch (Exception e) {
+
+            }
+            //close
+            connection.close();
         }
         catch(SQLException ex) {
             ex.printStackTrace();
